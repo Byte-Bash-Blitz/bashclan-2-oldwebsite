@@ -177,7 +177,7 @@
 
         .logo {
             max-width: 200px;
-            margin: 0 auto 1rem;
+            margin: 0 auto;
             filter: drop-shadow(3px 3px 3px rgba(0, 0, 0, 0.3));
         }
 
@@ -211,6 +211,10 @@
             background-color: var(--color-primary);
             color: var(--color-accent);
         }
+        .logo animate-fade-in {
+            position: relative;
+            z-index: 1;
+        }
 
         @media (max-width: 768px) {
             header h1 {
@@ -229,3 +233,129 @@
                 font-size: 2rem;
             }
         }
+
+        /* Animation Classes */
+.animate-fade-in {
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+  }
+  
+  .animate-slide-down {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: slideDown 1s ease forwards;
+  }
+  
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* New Event Section Styles */
+  .event-card {
+    background-color: var(--color-background);
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .event-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .event-details {
+    padding: 1rem;
+    background-color: var(--color-secondary);
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+  }
+  
+  .event-details:hover {
+    transform: scale(1.02);
+  }
+  
+  /* Enhanced Card Hover Effect */
+  .card-hover {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card-hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(218, 165, 32, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .card-hover:hover::before {
+    transform: translateX(100%);
+  }
+  
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Leaders Grid */
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  /* Responsive Design Updates */
+  @media (max-width: 768px) {
+    .event-content {
+      grid-template-columns: 1fr;
+    }
+  
+    .leaders-grid {
+      grid-template-columns: 1fr;
+    }
+    .container .logo {
+        float: none;
+        display: block;
+        margin: 0 auto 1rem;
+      }
+  }
+  
+  
