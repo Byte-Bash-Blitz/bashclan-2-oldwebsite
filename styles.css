@@ -2,11 +2,9 @@
 
         :root {
             --color-primary: #977444ff; 
-            --color-secondary: #000000; 
-            --color-accent: #DAA520;  
-            --color-text: #3A3A3A;  
-            --color-background: #FEEACE;
-            --color-muted: #D3D3D3; 
+            --color-secondary: #000000;  
+            --color-text: #d9a65a;  
+            --color-background: #44311f;
         }
 
         *, *::before, *::after {
@@ -16,10 +14,10 @@
         }
 
         body {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Edwardian Script ITC', cursive;
             line-height: 1.6;
             color: var(--color-text);
-            background-color: var(--color-secondary);
+            background-color: var(--color-text);
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23daa520' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
@@ -27,6 +25,7 @@
           margin-top: 2rem;
           margin: 0 auto;
           overflow: hidden;
+          color: var(--color-text);
       }
 
         .container {
@@ -38,39 +37,41 @@
 
         .head-container .logo {
             float: left;
-            border-radius: 20px;
-            height: 200px;
-            padding: 1rem;
-            border-radius: 40px;
         }
 
         .container-main {
+          position: relative;
+          z-index: -1;
           width: 100%;
           max-width: 1200px;
+          font-size: 1.2rem;
           margin: 0 auto;
           overflow: hidden;
       }
 
+      .quote {
+        font-size: 1.5rem;
+        text-align: right;
+      }
+
         header {
-            background-color: var(--color-primary);
-            color: var(--color-muted);
+            background-color: var(--color-secondary);
             padding: 0;
             text-align: center;
-            border-bottom: 2px solid var(--color-accent);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h1, h2, h3 {
-            font-family: 'Cinzel', serif;
+            font-family: 'Edwardian Script ITC', cursive;
+            font-weight: 400;
+            letter-spacing: 4px;
             margin-bottom: 1rem;
+            color: var(--color-text);
         }
 
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
+            font-size: 4rem;
+            font-weight: 1000;
             letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         nav ul {
@@ -86,7 +87,7 @@
         }
 
         nav a {
-            color: var(--color-muted);
+            color: var(--color-text);
             text-decoration: none;
             font-size: 1.1rem;
             transition: color 0.3s ease;
@@ -100,7 +101,7 @@
             height: 2px;
             bottom: -5px;
             left: 0;
-            background-color: var(--color-accent);
+            background-color: var(--color-text);
             visibility: hidden;
             transform: scaleX(0);
             transition: all 0.3s ease-in-out;
@@ -113,13 +114,43 @@
 
         main {
             padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
         }
+        
+
+      /* Styling for feather images */
+      /* .feather-image {
+        position: absolute;
+        width: 120px; 
+        height: 120px; 
+        opacity: 0.8;
+        transition: all 0.3s ease-in-out;
+      }
+
+      @keyframes feather-float {
+        0% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-10px) rotate(20deg);
+        }
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      .feather-image {
+        animation: feather-float 5s infinite;
+      } */
 
         .section {
+            position: relative;
+            overflow: hidden;
             margin-bottom: 3rem;
             padding: 2rem;
             background-color: var(--color-background);
-            border: 2px solid var(--color-primary);
+            border: 20px solid var(--color-primary);
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: relative;
             overflow: hidden;
@@ -133,20 +164,23 @@
             left: 0;
             right: 0;
             height: 5px;
-            background: linear-gradient(to right, var(--color-primary), var(--color-accent), var(--color-primary));
         }
 
         .members {
+            position: relative;
+            overflow: hidden;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
         }
 
         .member {
+            position: relative;
+            overflow: hidden;
             text-align: center;
             padding: 1rem;
-            background-color: var(--color-muted);
-            border: 1px solid var(--color-primary);
+            background-color: var(--color-primary);
+            border: 4px solid var(--color-text);
             transition: transform 0.3s ease;
         }
 
@@ -161,35 +195,14 @@
         }
 
         footer {
-            background-color: var(--color-background);
-            color: var(--color-secondary);
+            background-color: var(--color-secondary);
+            color: var(--color-text);
             text-align: center;
             padding: 1rem 0;
             margin-top: 2rem;
-            border-top: 5px solid var(--color-accent);
+            border-top: 5px solid var(--color-text);
         }
 
-        .scroll-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--color-accent);
-            color: var(--color-primary);
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: none;
-        }
-
-        .scroll-top:hover {
-            background-color: var(--color-primary);
-            color: var(--color-accent);
-        }
         .logo animate-fade-in {
             position: relative;
             z-index: 1;
@@ -280,7 +293,7 @@
   
   .event-details {
     padding: 1rem;
-    background-color: var(--color-muted);
+    background-color: var(--color-primary);
     border-radius: 4px;
     transition: transform 0.3s ease;
   }

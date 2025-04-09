@@ -61,3 +61,27 @@ document.querySelectorAll(".member").forEach((card) => {
   })
 })
 
+// window.onload = function () {
+//   // Get the main element to calculate its dimensions
+//   const main = document.querySelector('main');
+//   const mainWidth = main.offsetWidth;
+//   const mainHeight = main.offsetHeight;
+
+//   // Get all feather images
+//   const feathers = document.querySelectorAll('.feather-image');
+
+//   feathers.forEach(feather => {
+//       // Set random position for each feather within main's dimensions
+//       const randomTop = Math.floor(Math.random() * (mainHeight - 50)) + "px"; // Subtracting 50 to avoid overflow
+//       const randomLeft = Math.floor(Math.random() * (mainWidth - 50)) + "px"; // Subtracting 50 to avoid overflow
+//       const randomZIndex = Math.floor(Math.random() * 1000); // Random z-index value
+
+//       feather.style.top = randomTop;
+//       feather.style.left = randomLeft;
+//       feather.style.zIndex = randomZIndex;
+
+//       // Optionally, adjust size randomly as well
+//       const randomSize = Math.floor(Math.random() * 30) + 20; // Random size between 20px and 50px
+//       feather.style.width = randomSize + "px";
+//   });
+// }
