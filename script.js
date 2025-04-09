@@ -1,34 +1,34 @@
-// Scroll to top functionality
-const scrollTop = document.getElementById("scrollTop")
+// // Scroll to top functionality
+// const scrollTop = document.getElementById("scrollTop")
 
-window.addEventListener("scroll", () => {
-  if (window.pageYOffset > 100) {
-    scrollTop.style.display = "block"
-  } else {
-    scrollTop.style.display = "none"
-  }
-})
+// window.addEventListener("scroll", () => {
+//   if (window.pageYOffset > 100) {
+//     scrollTop.style.display = "block"
+//   } else {
+//     scrollTop.style.display = "none"
+//   }
+// })
 
-scrollTop.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  })
-})
+// scrollTop.addEventListener("click", () => {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: "smooth",
+//   })
+// })
 
 // Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault()
-    const target = document.querySelector(this.getAttribute("href"))
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  })
-})
+// document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+//   anchor.addEventListener("click", function (e) {
+//     e.preventDefault()
+//     const target = document.querySelector(this.getAttribute("href"))
+//     if (target) {
+//       target.scrollIntoView({
+//         behavior: "smooth",
+//         block: "start",
+//       })
+//     }
+//   })
+// })
 
 // Intersection Observer for scroll animations
 const observerOptions = {
