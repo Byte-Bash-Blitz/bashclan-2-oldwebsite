@@ -552,3 +552,10 @@ footer {
   border-top: 1px solid var(--color-primary);
   padding-top: 10px;
 }
+
+.community-name {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  margin-top: 10px;
+  float: right;
+}
