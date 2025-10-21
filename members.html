@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members — Belmont</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <style>
+      .container-main, .section, .profile-card, .profile-details {
+        font-size: 1rem !important;
+      }
+      .section h2 { font-size: 1.3rem !important; }
+      .profile-card, .profile-details { padding: 0.7rem 1rem !important; }
+      .profile-card img, .profile-details img { height: 32px !important; }
+      @media (max-width: 600px) {
+        .container-main, .section, .profile-card, .profile-details { font-size: 0.9rem !important; }
+        .section h2 { font-size: 1.1rem !important; }
+        .profile-card, .profile-details { padding: 0.5rem 0.6rem !important; }
+        .profile-card img, .profile-details img { height: 20px !important; }
+      }
+    </style>
+    <link rel="stylesheet" href="./members.css" />
+    <style>
+      :root{--color-text:#d9a65a;--color-background:#44311f;--color-primary:rgb(136,102,54);}
+      body{background-color:var(--color-text); color:var(--color-background);} /* tan bg, brown copy */
+      .member, .member p, .member .member-name { color: var(--color-background); }
+  nav a, .menu-content a, .menu-back { color: var(--color-text); }
+  /* footer color is now site-wide in styles.css */
+    </style>
+  </head>
+  <body style="background-color:#d9a65a; color:#44311f;">
+    <!-- Only the correct header/menu overlay remains below -->
+  <header>
+      <div class="head-container" style="position: relative; z-index: 1; display:flex; align-items:center; justify-content:center; color:#d9a65a; gap:1.2rem;">
+        <a href="index.html"><img src="./belmontslogo.jpeg" alt="Belmont Logo" class="logo animate-fade-in" style="max-width:60px; height:auto;"/></a>
+        <nav style="position: center; color:#d9a65a;">
+          <h1 style="color:#d9a65a; font-size:2.2rem; margin:0;">Belmont</h1>
+        </nav>
+        <div style="position:absolute; right:18px; top:14px; color:#d9a65a;">
+          <button class="menu-btn" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="menuOverlay" class="menu-overlay" role="dialog" aria-hidden="true">
+        <div class="menu-content" role="menu" tabindex="-1" style="color:#d9a65a; background:#2d2115; border-radius:18px; box-shadow:0 2px 12px #0002; padding:2rem; max-width:320px; margin:2rem auto; font-family: 'Georgia', serif;">
+          <button class="menu-close" aria-label="Close menu" style="color:#d9a65a; font-size:2rem; background:none; border:none; float:right;">×</button>
+          <ul style="color:#d9a65a; list-style:none; padding:0; margin-top:1.5rem;">
+            <li style="margin-bottom:1rem;"><a href="index.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/mountain.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Home</a></li>
+            <li style="margin-bottom:1rem;"><a href="events.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/book.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Events</a></li>
+            <li style="margin-bottom:1rem;"><a href="members.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather1.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Members</a></li>
+            <li style="margin-bottom:1rem;"><a href="leaders.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather2.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Leaders</a></li>
+            <li style="margin-bottom:1rem;"><a href="past-members.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather3.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Past Members</a></li>
+          </ul>
+          <button class="menu-back" style="color:#d9a65a; margin-top:1.2rem; font-size:1.2rem; background:none; border:none; font-family:'Georgia',serif; font-weight:bold;">Back</button>
+        </div>
+      </div>
+    </header>
+    <div style="height:32px;"></div>
+    <div class="container-main" style="color:#44311f;">
+        <section class="section" style="color:#44311f;">
+          <h2 style="color:#d9a65a;">Clan Members</h2>
+          <style>
+            .members {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              gap: 2rem 2.5rem;
+              margin: 2rem 0;
+            }
+            @media (max-width: 900px) {
+              .members { grid-template-columns: 1fr; }
+            }
+          </style>
+          <div class="members">
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Jeshwin Antony</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>“The way of the world” has always fascinated me. While humanity has witnessed countless waves of evolution, none is as transformative as the current one: Artificial Intelligence. I am driven by the pursuit of leveraging AI to make the world a better place.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/jeshwin-antony.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Prim Sajun</h3>
+              
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>A UI/UX designer and web developer dedicated to creating clean, seamless experiences. I contribute by staying active within the clan and steadily supporting both the team and the community.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/prim-sajun.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Michal Nithesh</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>Exploring the field of software development, with a passion for building efficient and impactful solutions.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/michal-nithesh.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Amrutha</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>Enthusiastic about full stack development and AI integration , I love crafting innovative web applications that blend design with intelligence.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/amrutha.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Ancy</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>An aspiring full-stack developer driven by curiosity and continuous learning. Passionate about exploring technology, observing, and growing through every experience to build meaningful and creative solutions.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/ancy.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Maxwell Rubert</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>A curious kid exploring new things,who enjoys seeing others grow alongside me. I strive, alongside my fellow bashers,to create positive and collabrative learning environment where everyone can thrive. While my contributions mainly include Weekly Bash sessions and planning, I'm always eager to be part of the clan's journey and grow together with the team</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/maxwell-rubert.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Samuel Morris</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>Passionate about web development, UI design, and game creation. Contributes to clan projects through design, coding, and collaboration. Enthusiastic about hosting sessions, serving as MC, and actively participating in events and competitions.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/samuel-morris.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Andrea Betrina</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>A passionate web developer and designer, driven to bring ideas to life through creativity and code. I enjoy crafting meaningful digital experiences,experimenting with new features, and continously learning to make a positive impact in the tech community.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/andrea-betrina.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Aadhithya</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>A passionate game developer and designer, eager to turn code into creativity. I enjoy exploring different game engines and design tools, contributing to the clan by supporting teammates, creating projects, and sharing innovative ideas in game development.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/aadhithya-mahesh.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3 class="member-name" style="color:#d9a65a;">Sowmiya</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="text-xs" style="color:#d9a65a;"><small>Passionate about DevOps and Python automation, continuously strengthening my skills step by step. I contribute to the clan by sharing ideas, assisting with tasks, and fostering a collaborative environment where everyone learns, supports one another, and grows together.</small></p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/sowmiya.html">View Profile</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div style="text-align:center; margin-top:2rem;">
+          <img src="./assests/Feather1.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+          <img src="./assests/Feather2.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+          <img src="./assests/Feather3.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container" style="color:#d9a65a;">
+        <div class="mountains-container">
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 0px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 100px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 200px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 0px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 100px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 200px;" />
+        </div>
+        <p style="color:#d9a65a;">© Belmont - Since 2024. All rights reserved.</p>
+        <p style="color:#d9a65a;">Ad Montem Sapientiae - To the mountain of wisdom</p>
+      </div>
+    </footer>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>

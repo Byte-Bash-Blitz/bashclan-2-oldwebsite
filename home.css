@@ -1,0 +1,39 @@
+/* Home page overrides */
+.container-main.hero { color: var(--color-background) !important; }
+.container-main.hero .hero-title,
+.container-main.hero .hero-lead { color: var(--color-background) !important; }
+
+/* Force tiles into a single horizontal row with graceful overflow on small screens */
+
+.tiles {
+	display: flex !important;
+	gap: 1rem;
+	align-items: center;
+	justify-content: space-between;
+	/* remove scrolling: let flex items shrink to fit the row */
+	flex-wrap: nowrap !important;
+	padding: 1rem 0;
+}
+
+/* Make six tiles fit on a single row by using a percentage-based flex-basis */
+.tiles .tile {
+	flex: 1 1 calc((100% - (5 * 1rem)) / 6);
+	min-width: 0; /* allow shrinking below content width */
+	max-width: none;
+}
+
+/* Ensure tile link text is bright (gold) so it contrasts with dark tile background */
+.tiles .tile {
+	color: var(--color-text) !important;
+}
+.tiles .tile a {
+	color: var(--color-text) !important;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+
+/* On narrow screens, allow wrapping into two columns for usability */
+@media (max-width: 640px) {
+	.tiles { flex-wrap: wrap !important; }
+	.tiles .tile { flex: 1 1 calc(50% - 0.5rem); min-width: 0; }
+}

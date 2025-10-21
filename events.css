@@ -1,0 +1,26 @@
+/* Events page overrides */
+/* Events page overrides */
+.events-list, .container-main, .container {
+  /* page-level text remains gold where appropriate, but event card text is swapped below */
+}
+
+/* Make event cards use the tile brown background and lighter interior text */
+.events-list .event-card {
+  background: var(--color-background);
+  border: 3px solid rgba(217,166,90,0.22);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+  padding: 14px;
+  color: var(--color-surface-light) !important;
+}
+
+.events-list .event-card .event-time,
+.events-list .event-card .event-by,
+.events-list .event-card .event-title {
+  color: #d9a65a !important;
+}
+
+/* ensure event interior text is gold while card background remains brown */
+.events-list .event-card {
+  color: #d9a65a !important;
+}

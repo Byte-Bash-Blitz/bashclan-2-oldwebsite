@@ -1,0 +1,9 @@
+/* About page overrides */
+.about-page .section h2,
+.about-page .section p,
+.about-page .quote,
+.about-page .container, .about-page .container-main {
+  color: var(--color-text) !important;
+}
+.about-page nav a { color: var(--color-text) !important; }
+.about-page footer, .about-page footer p { color: var(--color-text) !important; }
