@@ -1,0 +1,9 @@
+/* Members page layout - color is applied inline in members.html */
+.members { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.members .member {
+	padding: 16px;
+	border-radius: 8px;
+	background: var(--color-background);
+	border: 3px solid rgba(217,166,90,0.18);
+	box-shadow: 0 8px 20px rgba(0,0,0,0.24);
+}

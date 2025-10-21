@@ -1,0 +1,2 @@
+/* Past Members page overrides */
+.container-main, .container, .member, .member p { color: var(--color-text) !important; }

@@ -2,41 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome — Belmont</title>
+  <!-- spacing div removed from head, only in body -->
+    <title>Leaders — Belmont</title>
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./home.css" />
+    <style>
+      .container-main, .section, .profile-card, .profile-details {
+        font-size: 1rem !important;
+      }
+      .section h2 { font-size: 1.3rem !important; }
+      .profile-card, .profile-details { padding: 0.7rem 1rem !important; }
+      .profile-card img, .profile-details img { height: 32px !important; }
+      @media (max-width: 600px) {
+        .container-main, .section, .profile-card, .profile-details { font-size: 0.9rem !important; }
+        .section h2 { font-size: 1.1rem !important; }
+        .profile-card, .profile-details { padding: 0.5rem 0.6rem !important; }
+        .profile-card img, .profile-details img { height: 20px !important; }
+      }
+    </style>
+    <link rel="stylesheet" href="./leaders.css" />
     <style>
       :root{--color-text:#d9a65a;--color-background:#44311f;--color-primary:rgb(136,102,54);}
-      body{background-color:var(--color-text); color:var(--color-background);}
-      .hero-title { font-size: 2.2rem !important; margin-bottom: 0.5rem; }
-      .hero-lead { font-size: 1.1rem !important; margin-bottom: 1.2rem; }
-      .tiles { display: flex; flex-wrap: wrap; gap: 0.7rem; justify-content: center; margin-bottom: 1.2rem; }
-      .tile { font-size: 1rem !important; padding: 0.7rem 1.1rem !important; border-radius: 10px; min-width: 110px; text-align: center; }
-      .tile a { font-size: 1rem !important; }
-      .section { padding: 0.7rem 0.5rem !important; }
-      .section h2 { font-size: 1.3rem !important; margin-bottom: 0.5rem; }
-      .section p, .section .quote { font-size: 1rem !important; }
-      .container-main.hero { padding: 1.2rem 0.5rem !important; }
-      img.logo { max-width: 60px !important; height: auto !important; }
-      .menu-content ul li { font-size: 1rem !important; }
-      .menu-content ul img { height: 14px !important; margin-right: 6px !important; }
-      .container-main.hero > div[style*='display:flex'] img { height: 32px !important; }
-      @media (max-width: 600px) {
-        .hero-title { font-size: 1.3rem !important; }
-        .hero-lead { font-size: 0.95rem !important; }
-        .tiles { gap: 0.4rem; }
-        .tile { font-size: 0.9rem !important; padding: 0.5rem 0.7rem !important; min-width: 80px; }
-        .section h2 { font-size: 1.1rem !important; }
-        .section p, .section .quote { font-size: 0.9rem !important; }
-        .container-main.hero { padding: 0.7rem 0.2rem !important; }
-        img.logo { max-width: 38px !important; }
-        .container-main.hero > div[style*='display:flex'] img { height: 20px !important; }
-      }
+      body{background-color:var(--color-text); color:var(--color-background);} /* tan bg, brown copy */
+      .member, .member p, .member .member-name { color: var(--color-background); }
+  nav a, .menu-content a, .menu-back { color: var(--color-text); }
+  /* footer color is now site-wide in styles.css */
     </style>
   </head>
   <body style="background-color:#d9a65a; color:#44311f;">
-    <header>
+    <!-- Only the correct header/menu overlay remains below -->
+  <header>
       <div class="head-container" style="position: relative; z-index: 1; display:flex; align-items:center; justify-content:center; color:#d9a65a; gap:1.2rem;">
         <a href="index.html"><img src="./belmontslogo.jpeg" alt="Belmont Logo" class="logo animate-fade-in" style="max-width:60px; height:auto;"/></a>
         <nav style="position: center; color:#d9a65a;">
@@ -67,29 +61,34 @@
         </div>
       </div>
     </header>
+  <div style="height:32px;"></div>
+  <div class="container-main" style="color:#44311f;">
+        <section class="section" style="color:#44311f;">
+          <h2 style="color:#d9a65a;">Our Leaders</h2>
+          <div class="leaders-grid">
+            <div class="member card-hover" style="color:#44311f;">
+              <h3  style="color:#d9a65a;">SRIHARSHINI</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="member-name"style="color:#d9a65a;">Captain Bash</p>
+              
+              <p style="color:#d9a65a;">A passionate full-stack web developer . Skilled in leadership, event organization, and teamwork. Dedicated to guiding members, fostering creativity, and driving the clan’s growth through innovation, collaboration, and continuous learning in technology.</p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/sriharshini.html">View Profile</a>
+              </div>
+            </div>
+            <div class="member card-hover" style="color:#44311f;">
+              <h3  style="color:#d9a65a;">GEO NITHIN</h3>
+              <p style="color:#d9a65a;">_______________________________________________________</p>
+              <p class="member-name"style="color:#d9a65a;">Captain Bash</p>
 
-    <main>
-      <div class="container-main hero" style="color:#44311f;">
-        <h1 class="animate-slide-down hero-title" style="color:#44311f;">Welcome to Belmont</h1>
-        <p class="hero-lead" style="color:#44311f;">Belmont is a clan of curious minds striving for knowledge and craftsmanship — a modern take on curiosity, creativity and collaboration.</p>
-
-        <div class="tiles">
-          
-          <!-- About tile removed after merging into home page -->
-          <div class="tile"><a href="events.html" style="color:#d9a65a !important;">Events</a></div>
-          <div class="tile"><a href="leaders.html" style="color:#d9a65a !important;">Leaders</a></div>
-          <div class="tile"><a href="members.html" style="color:#d9a65a !important;">Members</a></div>
-          <div class="tile"><a href="past-members.html" style="color:#d9a65a !important;">Past Members</a></div>
-        </div>
-
-        <!-- About section merged from about.html -->
-        <section class="section" style="margin-top:3rem;">
-          <h2 style="color:#d9a65a;">Our Vision</h2>
-          <p style="color:#d9a65a;">Where we explore, gain and impart knowledge to build things, trying to make a change in how the world operates. Like a wave that comes crashing to change everything into better things. Something outside today's system, reminiscent of the 15th or 16th centuries. A group of people who will question everything and finding the answers to their inquiries—a crusade for wisdom. To become wise a knowledgeable. A clan with singular goal: to question things and find answers.</p>
-          <p style="color:#d9a65a;">We strive to blend the curiosity and revolutionary spirit of the Renaissance with the cutting-edge technologies of today. Our aim is to foster an environment where creativity and technology intertwine, leading to groundbreaking innovations that can reshape our world.</p>
-          <p class="quote" style="color:#d9a65a;"><img src="./assests/Feather1.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">-Ad Montem Sapientiae</p>
+              <p style="color:#d9a65a;">A passionate full stack java web developer, deeply curious and driven to learn, who strives to apply knowledge to create meaningful impact. Enthusiastic about exploring new technologies, with keen interest in branching into data science.</p>
+              <div class="card-actions" style="margin-top:12px;">
+                <a class="profile-tag" href="./profiles/geo-nithin.html">View Profile</a>
+              </div>
+            </div>
+          </div>
         </section>
-        <div style="display:flex; justify-content:center; align-items:center; margin-top:2rem;">
+        <div style="text-align:center; margin-top:2rem;">
           <img src="./assests/Feather1.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
           <img src="./assests/Feather2.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
           <img src="./assests/Feather3.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
@@ -107,12 +106,11 @@
           <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 100px;" />
           <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 200px;" />
         </div>
-        <p>© Belmont - since 2024. All rights reserved.</p>
-        <p>Ad Montem Sapientiae - To the mountain of wisdom</p>
+        <p style="color:#d9a65a;">© Belmont - Since 2024. All rights reserved.</p>
+        <p style="color:#d9a65a;">Ad Montem Sapientiae - To the mountain of wisdom</p>
       </div>
     </footer>
 
     <script src="./script.js" defer></script>
   </body>
 </html>
-

@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Alice&family=Cinzel:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap");
 
 :root {
   --color-primary: rgb(136, 102, 54);
   --color-secondary: #000000;
   --color-text: #d9a65a;
   --color-background: #44311f;
+  /* slightly different surface color for containers so inner cards stand out */
+  --color-surface: #392615;
 }
 
 *,
@@ -16,9 +18,10 @@
 }
 
 body {
-  font-family: "Edwardian Script ITC", cursive;
+  font-family: 'Alice', serif;
   line-height: 1.6;
-  color: var(--color-text);
+  /* page background uses the theme tan color; use dark text for contrast */
+  color: var(--color-secondary);
   background-color: var(--color-text);
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23daa520' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
@@ -27,8 +30,53 @@ body {
   margin-top: 2rem;
   margin: 0 auto;
   overflow: hidden;
-  color: var(--color-text);
+  color: inherit; /* colors will be applied inline per element */
 }
+
+/* Header layout adjustments */
+.head-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-title {
+  font-family: 'Alice', serif;
+  font-size: 3.2rem;
+  color: inherit;
+  letter-spacing: 2px;
+}
+
+/* small decorative feathers in header */
+.header-feather {
+  position: absolute;
+  width: 60px;
+
+  height: 60px;
+  opacity: 0.85;
+  top: 18px;
+}
+
+.header-feather.left { left: 120px; }
+
+.header-feather.right { right: 80px; }
+
+/* watermark background (duplicate logo) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url('./belmontslogo.jpeg');
+  background-repeat: no-repeat;
+  background-position: center top 160px;
+  background-size: 360px auto;
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ensure header/main are above watermark */
+.head-container, main, footer { position: relative; z-index: 2; }
 
 .container {
   width: 90%;
@@ -37,18 +85,121 @@ body {
   overflow: hidden;
 }
 
+/* Make text inside main containers use the tile/title brown for better contrast on the tan background */
+.container, .container-main {
+  color: inherit; /* per-element inline colors will control visibility */
+}
+
+/* Ensure common content elements inside containers use the tile/title brown by default
+   while decorative accents (links, nav) keep the golden accent where needed. */
+.container h1, .container h2, .container h3,
+.container p, .container li, .container a,
+.container-main h1, .container-main h2, .container-main h3,
+.container-main p, .container-main li, .container-main a {
+  color: inherit;
+}
+
 .head-container .logo {
   float: left;
 }
 
 .container-main {
   position: relative;
-  z-index: -1;
+  z-index: 2; /* ensure content sits above the watermark */
   width: 100%;
   max-width: 1200px;
   font-size: 1.6rem;
   margin: 0 auto;
-  overflow: hidden;
+  /* allow decorative feathers to overflow the container */
+  overflow: visible;
+}
+
+/* Hero / landing title and lead paragraph */
+.hero {
+  text-align: center;
+  padding: 4rem 1rem;
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  margin-bottom: 1rem;
+  color: inherit;
+}
+
+.hero-lead {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+  color: inherit;
+}
+
+/* Tile / Home options */
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  align-items: stretch;
+}
+
+/* Tile entrance stagger */
+.tiles[data-reveal="true"] .tile { opacity: 0; transform: translateY(12px) scale(0.99); }
+.tiles[data-reveal="true"] .tile.revealed { animation: tileIn 420ms cubic-bezier(.2,.9,.3,1) forwards; }
+.tiles[data-reveal="true"] .tile.revealed:nth-child(1){ animation-delay: 60ms }
+.tiles[data-reveal="true"] .tile.revealed:nth-child(2){ animation-delay: 120ms }
+.tiles[data-reveal="true"] .tile.revealed:nth-child(3){ animation-delay: 180ms }
+.tiles[data-reveal="true"] .tile.revealed:nth-child(4){ animation-delay: 240ms }
+.tiles[data-reveal="true"] .tile.revealed:nth-child(5){ animation-delay: 300ms }
+
+@keyframes tileIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+.tile {
+  background-color: var(--color-background);
+  border: 6px solid rgba(136,102,54,0.95);
+  color: inherit;
+  padding: 1.2rem;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18); /* restore dark shadow */
+}
+
+.tile a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.tile:hover, .tile:focus {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.28); /* stronger dark shadow on hover */
+}
+
+.nav-cta {
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid var(--color-primary);
 }
 
 .quote {
@@ -62,10 +213,248 @@ header {
   text-align: center;
 }
 
+/* Top-right menu button and overlay */
+.menu-btn {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-text);
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+/* Small tag-style link used for profile quick-links */
+.profile-tag {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-background); /* brown text */
+  background: var(--color-text); /* tan bg */
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(68,49,31,0.08);
+  font-size: 0.95rem;
+}
+
+/* Back link used on profile pages */
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-text);
+  background: transparent;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+/* Profile page layout and effects */
+.profile-page { max-width: 980px; margin: 2.2rem auto; padding: 2rem; background: #000000; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); border: 6px solid rgba(136,102,54,0.85); }
+.profile-header { display:flex; gap:1.2rem; align-items:center; margin-bottom:1.2rem; }
+.profile-header .avatar { width:120px; height:120px; border-radius:12px; background-color: #222; background-image: url('../belmontslogo.jpeg'); background-size: cover; background-position: center; box-shadow: 0 6px 18px rgba(0,0,0,0.6); flex-shrink:0; }
+.profile-header h1 { font-size:2.6rem; margin:0 0 0.4rem 0; color:var(--color-text); }
+.profile-header p.lead { margin:0; color:var(--color-text); opacity:0.95; max-width:720px; }
+
+/* Top bar inside the profile container (black strip) showing "Name - Profile" */
+.profile-topbar { background: #000; color: var(--color-text); padding: 10px 14px; border-radius: 6px; margin: -2rem -2rem 1.2rem -2rem; border-bottom: 4px solid rgba(136,102,54,0.6); display:flex; align-items:center; gap:12px; }
+.profile-topbar h2 { font-size:1.2rem; margin:0; color: var(--color-text); letter-spacing: 1px; }
+.profile-topbar .topbar-logo { width:36px; height:36px; background-image: url('../belmontslogo.jpeg'); background-size: cover; background-position: center; border-radius:6px; }
+
+/* small meta cards inside profile container
+   Updated: use black background with tan (#d9a65a) border and tan text
+   so they match the LinkedIn-style black card with a tan outline shown in the screenshot. */
+.meta-card {
+  display: inline-block;
+  background: #000000;
+  color: var(--color-text);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin: 6px 8px 6px 0;
+  min-width: 120px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.24);
+  border: 2px solid var(--color-text);
+}
+.meta-card dt { font-weight: 700; font-size: 0.85rem; color: var(--color-text); }
+.meta-card dd { margin-top: 6px; font-size: 0.95rem; color: var(--color-text); }
+
+/* place the back link outside the profile container as a black tag */
+.back-tag { display:inline-block; background:#000; color:var(--color-text); padding:8px 12px; border-radius:8px; text-decoration:none; border:2px solid rgba(136,102,54,0.6); margin-top:14px; }
+
+/* ensure projects and links keep good contrast on black */
+.projects, .links { color: var(--color-text); }
+
+.profile-meta { display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px 28px; margin-top:1.2rem; align-items:start; }
+.profile-meta dt { font-weight:700; color:var(--color-text); margin-bottom:6px; }
+.profile-meta dd { margin:0; color:var(--color-text); }
+
+.links { margin-top:1rem; display:flex; gap:0.8rem; flex-wrap:wrap; }
+.btn { display:inline-block; padding:8px 14px; border-radius:8px; text-decoration:none; font-weight:600; }
+.btn-outline { color: var(--color-text); border:2px solid rgba(217,166,90,0.18); background:transparent; }
+.btn-primary { background:var(--color-text); color:var(--color-background); border:2px solid rgba(0,0,0,0.06); }
+.btn:hover, .profile-tag:hover { transform: translateY(-4px); transition: transform 180ms ease; }
+
+.projects { margin-top:1.6rem; color:var(--color-text); }
+.projects h3 { letter-spacing:3px; color:var(--color-text); }
+.projects ul { margin-left:1.2rem; }
+.projects li { margin:0.6rem 0; }
+
+/* entrance animation */
+.fade-in-up { opacity:0; transform: translateY(14px); animation: fadeInUp 420ms cubic-bezier(.2,.9,.3,1) forwards; }
+@keyframes fadeInUp { to { opacity:1; transform: translateY(0);} }
+
+@media (max-width:880px) {
+  .profile-meta { grid-template-columns: repeat(2, 1fr); }
+  .profile-header { flex-direction:column; align-items:flex-start; }
+  .profile-header .avatar { width:96px; height:96px; }
+}
+
+.menu-btn svg { width:20px; height:20px; display:block; }
+.menu-btn:hover { transform: rotate(4deg) scale(1.03); transition: transform 160ms ease; }
+.menu-btn.open { transform: rotate(90deg); }
+
+/* Hamburger to X morph - target the three lines */
+.menu-btn svg line { transition: transform 220ms cubic-bezier(.2,.9,.3,1), opacity 160ms ease; transform-origin: 50% 50%; }
+.menu-btn.open svg line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-btn.open svg line:nth-child(2) { opacity: 0; }
+.menu-btn.open svg line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.menu-overlay.open {
+  display: flex;
+  animation: overlayFade 220ms ease forwards;
+}
+
+.menu-content {
+  background: var(--color-background);
+  border: 6px solid var(--color-primary);
+  padding: 2rem;
+  width: min(420px, 90%);
+  color: var(--color-text);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.menu-content { box-shadow: 0 0 18px rgba(217,166,90,0.08), 0 8px 30px rgba(0,0,0,0.6); transform: translateY(-6px); transition: transform 220ms ease, box-shadow 200ms ease; }
+.menu-overlay.open .menu-content { transform: translateY(0); }
+
+.menu-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.menu-content li { margin: 12px 0; }
+
+.menu-content a { color: var(--color-text); text-decoration: none; font-size: 1.2rem; display: inline-block; padding: 0.8rem 1.2rem; width: 100%; border-radius: 6px; background: rgba(0,0,0,0.06); box-shadow: inset 0 -4px 0 rgba(0,0,0,0.06); transition: transform 180ms ease, box-shadow 220ms ease, background 160ms ease; }
+
+/* menu item hover/glow matching tile theme */
+.menu-content a:hover,
+.menu-content a:focus {
+  transform: translateY(-6px);
+  background: rgba(0,0,0,0.14);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 18px rgba(217,166,90,0.16);
+  color: var(--color-text);
+}
+
+/* Staggered reveal for menu items */
+.menu-content[data-open="true"] ul li { opacity: 0; transform: translateY(8px); }
+.menu-content[data-open="true"].reveal ul li { animation: menuItemIn 360ms cubic-bezier(.2,.9,.3,1) forwards; }
+.menu-content[data-open="true"].reveal ul li:nth-child(1){ animation-delay: 80ms }
+.menu-content[data-open="true"].reveal ul li:nth-child(2){ animation-delay: 140ms }
+.menu-content[data-open="true"].reveal ul li:nth-child(3){ animation-delay: 200ms }
+.menu-content[data-open="true"].reveal ul li:nth-child(4){ animation-delay: 260ms }
+.menu-content[data-open="true"].reveal ul li:nth-child(5){ animation-delay: 320ms }
+.menu-content[data-open="true"].reveal ul li:nth-child(6){ animation-delay: 380ms }
+
+@keyframes menuItemIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* subtle accent underline for focused/active menu links */
+.menu-content a:after { content: ""; display: block; height: 3px; width: 0; background: var(--color-primary); margin-top: 8px; transition: width 220ms ease; }
+.menu-content a:hover:after, .menu-content a:focus:after { width: 64%; margin-left: 18%; }
+
+.menu-close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* ensure menu-content children stack nicely */
+.menu-content { display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
+
+.menu-back {
+  margin-top: 1rem;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  background: rgba(0,0,0,0.06);
+  color: var(--color-text);
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  border: 2px solid rgba(0,0,0,0.06);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 220ms ease, background 160ms ease;
+}
+
+.menu-back:hover, .menu-back:focus {
+  transform: translateY(-6px);
+  background: rgba(0,0,0,0.14);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 18px rgba(217,166,90,0.16);
+}
+
+/* Tile glowing edge */
+
+/* Remove golden glow, use only dark shadow for home page cards */
+/* Shimmer effect for home page cards, no shadow */
+.tile {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s, transform 0.2s;
+  box-shadow: none !important;
+}
+.tile::before {
+  content: "";
+  position: absolute;
+  top: 0; left: -60%;
+  width: 60%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+  animation: shimmer-tile 1.8s infinite;
+}
+.tile:hover, .tile:focus {
+  transform: translateY(-6px) scale(1.03);
+}
+
+@keyframes shimmer-tile {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+
+@keyframes overlayFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 h1,
 h2,
 h3 {
-  font-family: "Edwardian Script ITC", cursive;
+  font-family: 'Alice', serif;
   font-weight: 400;
   letter-spacing: 4px;
   margin-bottom: 1rem;
@@ -128,13 +517,112 @@ main {
   overflow: hidden;
   margin-bottom: 3rem;
   padding: 2rem;
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   border: 20px solid var(--color-primary);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
   text-align: center;
 }
+
+/* About page specific: improve contrast — use golden accent and stronger weight for readability */
+.about-page .section h2,
+.about-page .section p,
+.about-page .quote {
+  color: color-mix(in srgb, var(--color-text) 90%, #000 10%);
+  font-weight: 500;
+  letter-spacing: 0.6px;
+  opacity: 0.98;
+}
+
+/* About page: use golden accent for local links and footer text */
+.about-page a,
+.about-page footer,
+.about-page footer p {
+  color: var(--color-text);
+}
+
+/* make header nav links slightly more prominent on About page */
+.about-page nav a { color: var(--color-text); }
+
+.section, .event-card { position: relative; z-index: 3; }
+
+/* Events list: card-style rows that match the tile look */
+.events-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+
+.event-card {
+  display: grid;
+  grid-template-columns: 160px 1fr 240px;
+  align-items: center;
+  gap: 1rem;
+  background: var(--color-background);
+  border: 6px solid rgba(136,102,54,0.95);
+  padding: 1.0rem 1.4rem;
+  border-radius: 10px;
+  color: inherit; /* text color is page-controlled via inline per-page styles */
+  transition: transform 180ms ease, box-shadow 260ms ease;
+  min-height: 66px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.55), 0 0 22px rgba(217,166,90,0.16);
+}
+
+.event-time {
+  grid-column: 1;
+  font-weight: 600;
+  font-size: 0.98rem;
+  text-align: left;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-body {
+  grid-column: 2;
+  text-align: center;
+  min-width: 0; /* allow shrink */
+}
+
+.event-title {
+  font-size: 1.05rem;
+  margin-bottom: 0.1rem;
+  color: inherit;
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.event-by {
+  grid-column: 3;
+  text-align: center;
+  color: inherit;
+  white-space: normal; /* allow wrapping */
+}
+
+@media (max-width: 800px) {
+  .event-card { grid-template-columns: 1fr; gap: 0.6rem; }
+  .event-time { grid-column: 1; width: auto; margin-bottom: 0.2rem; white-space: normal; }
+  .event-body { grid-column: 1; text-align: left; }
+  .event-by { grid-column: 1; width: auto; text-align: left; margin-top: 0.2rem; }
+}
+
+/* animate-on-scroll helpers */
+.animate-on-scroll { opacity: 0; transform: translateY(12px); transition: opacity 420ms ease, transform 420ms cubic-bezier(.2,.9,.3,1); }
+.animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
 .section::before {
   content: "";
@@ -168,6 +656,14 @@ main {
   transition: transform 0.3s ease;
 }
 
+/* Leaders / member card text match tile brown */
+.member .member-name,
+.member p {
+  color: inherit;
+}
+
+.member-name { letter-spacing: 2px; }
+
 .member:hover {
   transform: translateY(-5px);
 }
@@ -180,11 +676,11 @@ main {
 
 footer {
   background-color: var(--color-secondary);
-  color: var(--color-text);
+  color: #d9a65a; /* explicit golden accent for footer text */
   text-align: center;
   padding: 1rem 0;
   margin-top: 2rem;
-  border-top: 5px solid var(--color-text);
+  border-top: 5px solid #d9a65a;
 }
 
 .logo animate-fade-in {
@@ -293,8 +789,8 @@ footer {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-.event-content {
-  display: grid;
+.menu-content {
+  background: var(--color-surface);
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 1rem;
@@ -336,6 +832,121 @@ footer {
 
 .card-hover:hover::before {
   transform: translateX(100%);
+}
+
+/* Edge glow for containers and cards */
+:where(.container, .container-main, .section, .tile, .event-card, .member, .menu-content) {
+  position: relative;
+  transition: box-shadow 260ms ease, transform 180ms ease;
+}
+
+:where(.container, .container-main, .section, .tile, .event-card, .member, .menu-content)::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: 0 0 0 rgba(217,166,90,0); /* start invisible */
+  transition: box-shadow 260ms ease, opacity 220ms ease;
+  opacity: 0;
+}
+
+/* Subtle static glow */
+:where(.container, .container-main, .section) {
+  --glow-color: rgba(217,166,90,0.06);
+}
+
+:where(.tile, .event-card, .member, .menu-content) {
+  --glow-color: rgba(217,166,90,0.14);
+}
+
+:where(.container, .container-main, .section, .tile, .event-card, .member, .menu-content)::after {
+  box-shadow: 0 8px 30px var(--glow-color), 0 0 18px rgba(217,166,90,0.02) inset;
+  opacity: 1;
+}
+
+/* Hover/focus intensify */
+:where(.tile:hover, .event-card:hover, .member:hover, .menu-content:hover, .menu-content:focus-within) {
+  transform: translateY(-6px);
+}
+
+:where(.tile:hover, .event-card:hover, .member:hover, .menu-content:hover, .menu-content:focus-within)::after {
+  box-shadow: 0 18px 60px rgba(217,166,90,0.22), 0 0 36px rgba(217,166,90,0.12) inset;
+}
+
+/* Respect reduced motion - reduce glow animations */
+@media (prefers-reduced-motion: reduce) {
+  :where(.container, .container-main, .section, .tile, .event-card, .member, .menu-content),
+  :where(.container, .container-main, .section, .tile, .event-card, .member, .menu-content)::after {
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Lighten member/leader/tile card surfaces slightly so they read against the page bg */
+:root {
+  /* a slightly lighter surface based on --color-surface */
+  --color-surface-light: rgba(57,38,21,0.88); /* slightly less opaque than surface */
+  --card-border-glow: rgba(217,166,90,0.18);
+}
+
+/* Member and leader cards: swap background and text colors
+   - cards now use the tile brown background (var(--color-background))
+   - interior text uses the previous lighter surface color for contrast */
+.member, .leader-card {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  border: 3px solid rgba(217,166,90,0.28);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.28);
+}
+
+.member p, .leader-card p, .member .member-name, .leader-card .member-name,
+.member h3, .leader-card h3 {
+  color: inherit;
+}
+
+/* Slight lift and brighter border on hover/focus to match glow language */
+.member:hover, .leader-card:hover, .tile:hover, .event-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-border-glow);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.36), 0 0 28px rgba(217,166,90,0.08) inset;
+}
+
+/* Events: disable edge-glow (the ::after used globally) and apply shimmer like member cards */
+.events-list .event-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* remove the global edge-glow pseudo generated by :where() */
+.events-list .event-card::after {
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+/* shimmer similar to .card-hover */
+.events-list .event-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(218,165,32,0.08), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.events-list .event-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* keep hover lift but remove the golden inset glow — use shadow only */
+.events-list .event-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--card-border-glow);
+  box-shadow: 0 18px 60px rgba(0,0,0,0.36);
 }
 
 /* Animation Keyframes */
@@ -392,6 +1003,117 @@ footer {
   height: 80px;
   width: 80px;
 }
+
+/* Inline feather images placed directly in profile HTML when pseudo-elements don't render reliably */
+.feather-inline {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  opacity: 0.98;
+  pointer-events: none;
+  z-index: 3; /* above the profile shadow */
+  transform-origin: center;
+  animation: feather-float 6s ease-in-out infinite;
+}
+.feather-inline.left { left: -90px; top: 40px; }
+.feather-inline.right { right: -90px; top: 40px; transform: scaleX(-1); }
+
+@media (max-width: 880px) {
+  .feather-inline { display: none; }
+}
+
+/* stacked positions for multiple inline feathers */
+.feather-inline.left-1 { left: -96px; top: 6%; width:72px; height:72px; }
+.feather-inline.left-2 { left: -96px; top: 50%; width:56px; height:56px; opacity:0.92; transform: translateY(-50%); }
+.feather-inline.left-3 { left: -96px; top: 92%; width:48px; height:48px; opacity:0.88; transform: translateY(-100%); }
+
+.feather-inline.right-1 { right: -96px; top: 6%; width:72px; height:72px; transform: scaleX(-1); }
+.feather-inline.right-2 { right: -96px; top: 50%; width:56px; height:56px; transform: translateY(-50%) scaleX(-1); opacity:0.92; }
+.feather-inline.right-3 { right: -96px; top: 92%; width:48px; height:48px; transform: translateY(-100%) scaleX(-1); opacity:0.88; }
+
+@media (max-width: 1100px) {
+  /* move feathers a bit closer on narrower but non-mobile screens */
+  .feather-inline.left-1, .feather-inline.left-2, .feather-inline.left-3 { left: -72px; }
+  .feather-inline.right-1, .feather-inline.right-2, .feather-inline.right-3 { right: -72px; }
+}
+
+/* Decorative feathers to left and right of each profile container */
+.profile-page {
+  /* ensure positioning context for pseudo-elements */
+  position: relative;
+}
+.profile-page::before,
+.profile-page::after {
+  content: "";
+  position: absolute;
+  top: 8%;
+  width: 240px; /* container area for multiple sprites */
+  height: 320px;
+  background-repeat: no-repeat;
+  opacity: 0.98;
+  pointer-events: none;
+  transform-origin: center;
+  animation: feather-float 6s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Left side: three feathers stacked */
+.profile-page::before {
+  left: -320px;
+  /* use only the existing feather assets (Feather1/Feather2/Feather3) repeated to create multiple decorations */
+  background-image: url('./assests/Feather1.svg'), url('./assests/Feather2.svg'), url('./assests/Feather3.svg'), url('./assests/Feather1.svg'), url('./assests/Feather2.svg'), url('./assests/Feather3.svg');
+  /* staggered vertical positions within the pseudo-element box */
+  background-position: 10% 6%, 12% 22%, 8% 38%, 12% 54%, 10% 70%, 8% 86%;
+  background-size: 72px 72px, 64px 64px, 56px 56px, 48px 48px, 40px 40px, 32px 32px;
+}
+
+/* Right side: use same existing feather assets mirrored */
+.profile-page::after {
+  right: -320px;
+  background-image: url('./assests/Feather2.svg'), url('./assests/Feather3.svg'), url('./assests/Feather1.svg'), url('./assests/Feather2.svg'), url('./assests/Feather3.svg'), url('./assests/Feather1.svg');
+  background-position: 90% 6%, 92% 22%, 88% 38%, 92% 54%, 90% 70%, 92% 86%;
+  background-size: 72px 72px, 64px 64px, 56px 56px, 48px 48px, 40px 40px, 32px 32px;
+}
+
+/* Hide decorative feathers on smaller screens to avoid layout issues */
+@media (max-width: 880px) {
+  .profile-page::before, .profile-page::after { display: none; }
+}
+
+/* === Page container text: use the title/tile brown for high contrast */
+/* Make page container copy use the same brown as titles/tiles so it's visible on the tan background. */
+
+/* Scoped text rules per component to avoid global overrides */
+/* Hero/landing copy uses title brown for strong contrast */
+.hero, .hero .hero-title, .hero .hero-lead {
+  color: var(--color-background);
+}
+
+/* Section body copy uses the tile/title brown by default */
+.section, .section p, .section h2, .section h3 {
+  color: inherit;
+  font-weight: 500;
+}
+
+/* Tiles and their links should keep the bright golden accent where appropriate */
+.tiles .tile, .tiles .tile a { color: var(--color-text); }
+
+/* Event cards: keep interior text bright for visibility on dark card bg */
+.event-card, .event-card .event-time, .event-card .event-title, .event-card .event-by {
+  color: var(--color-text);
+}
+
+/* Member and leader cards: bright text inside cards */
+.member, .member p, .member .member-name, .leaders-grid .member-name { color: var(--color-text); }
+
+/* Navigation and menu items remain bright gold */
+nav a, .menu-content a, .menu-back, .menu-close { color: var(--color-text); }
+
+/* Footer copy uses the golden accent site-wide */
+footer, footer p { color: #d9a65a; }
+/* Tiles text color controlled per-page */
+.tiles .tile, .tiles .tile a { color: inherit; }
+
 
 /* Left Feathers */
 .feather-1 { top: 100px; left: 0px; }
@@ -512,8 +1234,12 @@ footer {
   font-family: "Edwardian Script ITC", cursive;
   font-size: 2.5rem;
   margin: 0 0 10px;
-  color: var(--color-text);
+  color: inherit; /* Event card interior text controlled per-page */
 }
+/* Member/leader text controlled per-page */
+.member, .member p, .member .member-name, .leaders-grid .member-name { color: inherit; }
+/* navigation/menu colors controlled per-page */
+nav a, .menu-content a, .menu-back, .menu-close { color: inherit; }
 
 .belmonts-table {
   width: 100%;

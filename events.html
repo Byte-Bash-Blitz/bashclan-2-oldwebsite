@@ -1,80 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Belmont - Ad Montem Sapientiae</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="belmonts-wrapper">
-    <header class="belmonts-header">
-      <a href="index.html">
-        <img src="./belmontslogo.jpeg" alt="Belmonts Logo" class="belmonts-logo" />
-      </a>
-      <div class="belmonts-details">
-        <h1 class="belmonts-title">Belmonts Bash</h1>
-        <p><strong>Date:</strong> 12-4-2025</p>
-        <p><strong>Time:</strong> 9:30 - 3:00</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events — Belmont</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./events.css" />
+    <style>
+      .container-main, .events-col, .section, .meta-card, .event-link-card {
+        font-size: 1rem !important;
+      }
+      .section h2, .events-col h3 { font-size: 1.3rem !important; }
+      .meta-card, .event-link-card { padding: 0.7rem 1rem !important; }
+      .events-col { padding: 1rem !important; }
+      .meta-card img, .event-link-card img { height: 24px !important; }
+      @media (max-width: 600px) {
+        .container-main, .events-col, .section, .meta-card, .event-link-card { font-size: 0.9rem !important; }
+        .section h2, .events-col h3 { font-size: 1.1rem !important; }
+        .meta-card, .event-link-card { padding: 0.5rem 0.6rem !important; }
+      }
+    </style>
+    <style>
+  :root{--color-text:#d9a65a;--color-background:#44311f;--color-primary:rgb(136,102,54);}
+  body{background-color:var(--color-text);} /* tan bg */
+  /* card text is controlled in events.css */
+  nav a, .menu-content a, .menu-back { color: var(--color-text); }
+  /* footer color is now site-wide in styles.css */
+    </style>
+  </head>
+  <body style="background-color:#d9a65a;">
+    <!-- Only the correct header/menu overlay remains below -->
+  <header>
+      <div class="head-container" style="position: relative; z-index: 1; display:flex; align-items:center; justify-content:center; color:#d9a65a; gap:1.2rem;">
+        <a href="index.html"><img src="./belmontslogo.jpeg" alt="Belmont Logo" class="logo animate-fade-in" style="max-width:60px; height:auto;"/></a>
+        <nav style="position: center; color:#d9a65a;">
+          <h1 style="color:#d9a65a; font-size:2.2rem; margin:0;">Belmont</h1>
+        </nav>
+        <div style="position:absolute; right:18px; top:14px; color:#d9a65a;">
+          <button class="menu-btn" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="menuOverlay" class="menu-overlay" role="dialog" aria-hidden="true">
+        <div class="menu-content" role="menu" tabindex="-1" style="color:#d9a65a; background:#2d2115; border-radius:18px; box-shadow:0 2px 12px #0002; padding:2rem; max-width:320px; margin:2rem auto; font-family: 'Georgia', serif;">
+          <button class="menu-close" aria-label="Close menu" style="color:#d9a65a; font-size:2rem; background:none; border:none; float:right;">×</button>
+          <ul style="color:#d9a65a; list-style:none; padding:0; margin-top:1.5rem;">
+            <li style="margin-bottom:1rem;"><a href="index.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/mountain.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Home</a></li>
+            <li style="margin-bottom:1rem;"><a href="events.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/book.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Events</a></li>
+            <li style="margin-bottom:1rem;"><a href="members.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather1.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Members</a></li>
+            <li style="margin-bottom:1rem;"><a href="leaders.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather2.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Leaders</a></li>
+            <li style="margin-bottom:1rem;"><a href="past-members.html" style="color:#d9a65a; text-decoration:none; font-size:1.2rem; font-family:'Georgia',serif; font-weight:bold;"><img src="./assests/Feather3.svg" alt="" aria-hidden="true" style="height:18px; vertical-align:middle; margin-right:10px">Past Members</a></li>
+          </ul>
+          <button class="menu-back" style="color:#d9a65a; margin-top:1.2rem; font-size:1.2rem; background:none; border:none; font-family:'Georgia',serif; font-weight:bold;">Back</button>
+        </div>
       </div>
     </header>
+    <div style="height:32px;"></div>
+    <div class="container-main">
+        <section class="section">
+          <h2 style="color:#d9a65a;">Events</h2>
+          <div class="events-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:2rem; margin-top:2rem;">
+            <div class="events-col" style="background:#44311f; border-radius:18px; padding:1.5rem; color:#d9a65a; box-shadow:0 2px 12px #0002; display:flex; flex-direction:column;">
+              <h3 style="color:#d9a65a;">Past Events</h3>
+              <div style="display:grid; gap:1.2rem;">
+                <a href="Weekly-Bash-15.html" class="event-link-card" style="background:#2d2115; color:#d9a65a; border-radius:12px; padding:1rem 1.5rem; text-decoration:none; font-weight:600; box-shadow:0 1px 6px #0002;">Weekly Bash - 15</a>
+                <a href="Weekly-Bash-23.html" class="event-link-card" style="background:#2d2115; color:#d9a65a; border-radius:12px; padding:1rem 1.5rem; text-decoration:none; font-weight:600; box-shadow:0 1px 6px #0002;">Weekly Bash - 23</a>
+                <a href="Project-Showcase-3.html" class="event-link-card" style="background:#2d2115; color:#d9a65a; border-radius:12px; padding:1rem 1.5rem; text-decoration:none; font-weight:600; box-shadow:0 1px 6px #0002;">Project Showcase - 3</a>
+              </div>
+            </div>
+            <div class="events-col" style="background:#44311f; border-radius:18px; padding:1.5rem; color:#d9a65a; box-shadow:0 2px 12px #0002; display:flex; flex-direction:column;">
+              <h3 style="color:#d9a65a;">Upcoming Events</h3>
+              <div style="background:#2d2115; border-radius:12px; padding:1.5rem; color:#d9a65a; min-height:80px; display:flex; align-items:center; justify-content:center; font-weight:500;">No upcoming events at the moment. Stay tuned!</div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div style="text-align:center; margin-top:2rem;">
+          <img src="./assests/Feather1.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+          <img src="./assests/Feather2.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+          <img src="./assests/Feather3.svg" alt="Feather" style="height:60px; opacity:0.6; margin:0 6px;">
+        </div>
+    </main>
 
-    <table class="belmonts-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Event</th>
-          <th>By</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>9:30 AM - 10:00 AM</td>
-          <td>Preparation and Event setup</td>
-          <td>Bashers</td>
-        </tr>
-        <tr>
-          <td>10:00 AM - 10:10 AM</td>
-          <td>Introduction to Belmonts Bash</td>
-          <td>Belmonts</td>
-        </tr>
-        <tr>
-          <td>10:10 AM - 11:40 AM</td>
-          <td>Computer Science Students eh Really?</td>
-          <td>Captain Bash Haleel</td>
-        </tr>
-        <tr>
-          <td>11:45 AM - 12:45 PM</td>
-          <td>Mastering Github Basics</td>
-          <td>Basher Prim Sajun & Basher Michal Nithesh</td>
-        </tr>
-        <tr>
-          <td>12:45 PM - 01:20 PM</td>
-          <td>Lunch break</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>01:25 PM - 02:25 PM</td>
-          <td>Dumb Charades</td>
-          <td>Captain Bash SriHarshini & Basher Amrutha</td>
-        </tr>
-        <tr>
-          <td>02:30 PM - 02:45 PM</td>
-          <td>Quiz</td>
-          <td>Basher Jerlin Shabi & Basher Prim Sajun</td>
-        </tr>
-        <tr>
-          <td>02:50 PM - 03:00 PM</td>
-          <td>Conclusion</td>
-          <td>Belmonts</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <footer class="belmonts-footer">
-      <p><em>- Ad Mortem Sapientiae</em></p>
-      <a class="community-name">- Byte Bash Blitz</a>
+    <footer>
+      <div class="container" style="color:#d9a65a;">
+        <div class="mountains-container">
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 0px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 100px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: right; right: 200px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 0px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 100px;" />
+          <img src="./assests/mountain.svg" alt="mountain" style="width: 120px; height: 60px; position: absolute; float: left; left: 200px;" />
+        </div>
+        <p>© Belmont - since 2024. All rights reserved.</p>
+        <p>Ad Montem Sapientiae - To the mountain of wisdom</p>
+      </div>
     </footer>
-  </div>
-</body>
+
+    <script src="./script.js" defer></script>
+  </body>
 </html>
